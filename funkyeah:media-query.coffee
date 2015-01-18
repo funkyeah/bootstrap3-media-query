@@ -1,34 +1,34 @@
 
 if Meteor.isClient
   Meteor.startup ->
-    Session.set "device-screensize", "small" if window.matchMedia("only screen and (min-width: 1px) and (max-width: 640px)").matches
-    window.matchMedia("only screen and (min-width: 1px) and (max-width: 640px)").addListener (screensize) ->
+    Session.set "device-screensize", "xs" if window.matchMedia("only screen and (min-width: 1px) and (max-width: 767px)").matches
+    window.matchMedia("only screen and (min-width: 1px) and (max-width: 767px)").addListener (screensize) ->
       if screensize.matches
-        Session.set "device-screensize", "small"
+        Session.set "device-screensize", "xs"
         return
 
-    Session.set "device-screensize", "medium" if window.matchMedia("only screen and (min-width: 641px) and (max-width: 1023px)").matches
-    window.matchMedia("only screen and (min-width: 641px) and (max-width: 1023px)").addListener (screensize) ->
+    Session.set "device-screensize", "sm" if window.matchMedia("only screen and (min-width: 768px) and (max-width: 991px)").matches
+    window.matchMedia("only screen and (min-width: 768px) and (max-width: 991px)").addListener (screensize) ->
       if screensize.matches
-        Session.set "device-screensize", "medium"
+        Session.set "device-screensize", "sm"
         return
 
-    Session.set "device-screensize", "large" if window.matchMedia("only screen and (min-width: 1024px) and (max-width: 1440px)").matches
-    window.matchMedia("only screen and (min-width: 1024px) and (max-width: 1440px)").addListener (screensize) ->
+    Session.set "device-screensize", "md" if window.matchMedia("only screen and (min-width: 992px) and (max-width: 1199px)").matches
+    window.matchMedia("only screen and (min-width: 992px) and (max-width: 1199px)").addListener (screensize) ->
       if screensize.matches
-        Session.set "device-screensize", "large"
+        Session.set "device-screensize", "md"
         return
 
-    Session.set "device-screensize", "xlarge" if window.matchMedia("only screen and (min-width: 1441px) and (max-width: 1919px)").matches  
-    window.matchMedia("only screen and (min-width: 1441px) and (max-width: 1919px)").addListener (screensize) ->
-      if screensize.matches
-        Session.set "device-screensize", "xlarge"
-        return
+    # Session.set "device-screensize", "lg" if window.matchMedia("only screen and (min-width: 1441px) and (max-width: 1919px)").matches  
+    # window.matchMedia("only screen and (min-width: 1441px) and (max-width: 1919px)").addListener (screensize) ->
+    #   if screensize.matches
+    #     Session.set "device-screensize", "lg"
+    #     return
 
-    Session.set "device-screensize", "xxlarge" if window.matchMedia("only screen and (min-width: 1920px)").matches 
-    window.matchMedia("only screen and (min-width: 1920px)").addListener (screensize) ->
+    Session.set "device-screensize", "lg" if window.matchMedia("only screen and (min-width: 1200px)").matches 
+    window.matchMedia("only screen and (min-width: 1200px)").addListener (screensize) ->
       if screensize.matches
-        Session.set "device-screensize", "xxlarge"
+        Session.set "device-screensize", "lg"
         return
 
     if window.matchMedia("only screen and (orientation: portrait)").matches
@@ -57,19 +57,19 @@ if Meteor.isClient
       Session.get "device-screensize"
 
     Template.registerHelper "screensize_small", ->
-      (Session.get "device-screensize") is "small"
+      (Session.get "device-screensize") is "sm"
 
     Template.registerHelper "screensize_medium", ->
-      (Session.get "device-screensize") is "medium"
+      (Session.get "device-screensize") is "md"
 
     Template.registerHelper "screensize_large", ->
-      (Session.get "device-screensize") is "large"
+      (Session.get "device-screensize") is "lg"
 
     Template.registerHelper "screensize_xlarge", ->
-      (Session.get "device-screensize") is "xlarge"
+      (Session.get "device-screensize") is "xl"
 
     Template.registerHelper "screensize_xxlarge", ->
-      (Session.get "device-screensize") is "xxlarge"
+      (Session.get "device-screensize") is "xxl"
 
 
     Template.registerHelper "orientation", ->
