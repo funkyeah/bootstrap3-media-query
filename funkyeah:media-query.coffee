@@ -56,6 +56,9 @@ if Meteor.isClient
     Template.registerHelper "screensize", ->
       Session.get "device-screensize"
 
+    Template.registerHelper "screensize_xsmall", ->
+      (Session.get "device-screensize") is "xs"
+
     Template.registerHelper "screensize_small", ->
       (Session.get "device-screensize") is "sm"
 
